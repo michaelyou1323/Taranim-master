@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import org.brethren.taranim.adapter.SongListAdapter;
 import org.brethren.taranim.model.Song;
 import org.brethren.taranim.settings.SettingsHelper;
@@ -24,7 +27,7 @@ import org.brethren.taranim.settings.SettingsHelper;
 //import org.brethren.taranim.R;
 
 
-public class SongActivity extends ListActivity{
+public class SongActivity extends ListActivity {
 
     private TaranimApplication app;
     private SongListAdapter adapter;
@@ -32,22 +35,42 @@ public class SongActivity extends ListActivity{
     private SettingsHelper settingsHelper;
     private Typeface tf;
     private InputMethodManager inputMethodManager;
+
+    int getFontFileResourceByName(String fontName) {
+        String fontFileName = fontName.replace("-","").toLowerCase();
+        String resourceType = "font";
+        int resourceId = getResources().getIdentifier(fontFileName, resourceType, getPackageName());
+        if (resourceId != 0) {
+            return resourceId;
+        } else {
+            return R.font.robotoregular;
+        }
+    }
+
+    Typeface getTheTypeface(String fontName) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            return Typeface.createFromAsset(this.getAssets(), "fonts/" + fontName + ".ttf");
+        }
+        else {
+            return ResourcesCompat.getFont(this, getFontFileResourceByName(fontName));
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_activity);
         settingsHelper = new SettingsHelper(SongActivity.this);
-        tf = Typeface.createFromAsset(this.getAssets(),"fonts/"+settingsHelper.getFontName()+".ttf");
-
-        listTitle = (TextView)findViewById(R.id.list_title);
+        tf = getTheTypeface(settingsHelper.getFontName());
+        listTitle = (TextView) findViewById(R.id.list_title);
         listTitle.setTypeface(tf);
-        listTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP,settingsHelper.getFontSize());
+        listTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, settingsHelper.getFontSize());
         app = (TaranimApplication) getApplication();
 
         EditText songNoEditText = (EditText) findViewById(R.id.songNo_editText);
         songNoEditText.setFocusableInTouchMode(true);
         songNoEditText.requestFocus();
-        inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.showSoftInput(songNoEditText, InputMethodManager.SHOW_IMPLICIT);
 
 
@@ -56,15 +79,12 @@ public class SongActivity extends ListActivity{
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (s != null && !s.toString().equals(""))
-                {
+                if (s != null && !s.toString().equals("")) {
                     int songNo = Integer.parseInt(s.toString());
 
                     adapter = new SongListAdapter(app.getSongListById(songNo), SongActivity.this);
 
-                }
-                else
-                {
+                } else {
                     adapter = new SongListAdapter(app.getCurrentSongs(), SongActivity.this);
 
                 }
@@ -85,15 +105,14 @@ public class SongActivity extends ListActivity{
         });
 
 
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        tf = Typeface.createFromAsset(this.getAssets(),"fonts/"+settingsHelper.getFontName()+".ttf");
+        tf = Typeface.createFromAsset(this.getAssets(), "fonts/" + settingsHelper.getFontName() + ".ttf");
         listTitle.setTypeface(tf);
-        listTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP,settingsHelper.getFontSize());
+        listTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, settingsHelper.getFontSize());
         app = (TaranimApplication) getApplication();
         adapter = new SongListAdapter(app.getCurrentSongs(), this);
         setListAdapter(adapter);
@@ -110,6 +129,7 @@ public class SongActivity extends ListActivity{
         intent.putExtra("song", song);
         startActivity(intent);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
