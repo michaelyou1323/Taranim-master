@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/select_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/font_prompt" />
+
+    <Spinner
+        android:id="@+id/fonts_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/select_font"
+        android:entries="@array/font_arrays"
+        android:prompt="@string/font_prompt"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/select_font_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="@string/font_size_prompt" 
+        android:layout_below="@id/fonts_spinner"/>
+
+    <SeekBar
+        android:id="@+id/font_size_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/select_font_size"
+        android:max="50"
+        android:textSize="18sp"
+        android:prompt="@string/font_size_prompt" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/font_size_seekbar"
+        android:onClick="saveSettings"
+        android:textSize="18sp"
+        android:text="@string/save" />
+
+</RelativeLayout>

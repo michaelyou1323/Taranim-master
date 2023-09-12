@@ -1,0 +1,42 @@
+<resources>
+
+    <string name="app_name">ترنيمات روحية</string>
+    <string name="list_title">ترنيمات روحية</string>
+    <string name="no_data">لا توجد ترانيم</string>
+    <string name="font_prompt">اختر خط للنص</string>
+    <string name="font_size_prompt">اختر حجم الخط</string>
+
+    <string-array name="font_arrays">
+        <item>Roboto-Regular</item>
+        <item>arabeyes-qr</item>
+        <item>BEsfhnBd</item>
+        <item>KacstLetter</item>
+        <item>trado</item>
+        <item>ArabicTypesetting-Regular</item>
+    </string-array>
+
+    <string name="save">حفظ</string>
+    <string name="help">مساعدة</string>
+    <string name="from_app">من تطبيق ترنيمات روحية</string>
+    <string name="goole_play_link">https://play.google.com/store/apps/details?id=</string>
+
+    <string name="settings">الإعدادات</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="settings_saved">تم حفظ الإعدادات</string>
+    <string name="karar">ق</string>
+    <string name="enter_song_text">من فضلك أدخل نص الترنيمة الذي تريد البحث عنها</string>
+    <string name="search">ابحث</string>
+    <string name="fast_search">بحث سريع</string>
+    <string name="search_results_title">نتائج البحث</string>
+    <string name="no_results">لم يتم العثور على نتائج البحث.. من فضلك أعد المحاولة وتأكد من صحة النص المراد البحث  عنه.</string>
+    <string name="enter_song_number">أدخل رقم الترنيمة</string>
+    <string name="about">عن البرنامج</string>
+    <string name="about_text">هذا البرنامج يحتوي على ترانيم كتاب ترنيمات روحية الخاص بكنائس الإخوة بمصر إصدار 2010.\n\n  
+        شكر خاص للأخ عصام خليل خادم الرب صاحب الفكرة ومدير المشروع والمرنم الحلو الأخ بهجت عدلي الذى وفر النص المكتوب والأخ الحبيب عوض عصام الذي قام بفصل النص وتنسيقه. \n
+        صلاتنا أن يكون سبب بركة لحياتنا وإجتماعاتنا.\n\n
+          للإقتراحات أو الإستفسارات ossama.hani@gmail.com\n 
+          \n\nالمبرمج: أسامة شحاته
+        </string>
+    <string name="ok">OK</string>
+    <string name="title_activity_help">HelpActivity</string>
+</resources>
